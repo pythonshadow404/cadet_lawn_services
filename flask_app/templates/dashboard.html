@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"> -->
+    <title>Cadet Lawn Dashboard</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="nav">
+            <h1>Hello </h1>
+            <a href="/logout">Logout</a>
+            <a href="/services/new"><button type="button">Select Plan!</button></a>
+        </div>
+        <div class="content-dashboard">
+            <p>Your Services:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for service in user.services %}
+                    <tr>
+                        <td><a href="/services/{{service.id}}">{{service.destination}}</a></td>
+                        <td>{{service.start_date}}</td>
+                        <td>{{service.end_date}}</td>
+                        <td>{{service.plan}}</td>
+                        <td>
+                            <a href="/delete/service/{{service.id}}">Remove</a>
+                            <a href="/services/edit/{{service.id}}">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    
+
+</body>
+</html>
