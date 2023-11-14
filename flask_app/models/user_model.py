@@ -33,17 +33,8 @@ class User:
         return users
     
     @classmethod
-    def get_by_email(cls,data):
-        #email is the only thing we need
-        query = "SELECT * FROM users WHERE email = %(email)s;"
-        results = connectToMySQL(cls.DB).query_db(query,data)
-        if len(results) < 1: #login verification: if no email came back then the email does not exist.
-            return False
-        return cls(results[0])
-    
-    @classmethod
     def get_by_id(cls,data):
-        query = "SELECT * FROM users LEFT JOIN services ON users.id= services.user_id WHERE users.id = %(id)s;"
+        query = "SELECT * FROM users LEFT JOIN services ON users.id = services.user_id WHERE users.id = %(id)s;"
         results = connectToMySQL(cls.DB).query_db(query,data)
         user = cls(results[0])
         for row in results:
@@ -58,6 +49,15 @@ class User:
                 }
             user.services.append(Service(service_data))
         return user
+
+    @classmethod
+    def get_by_email(cls,data):
+        #email is the only thing we need
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        results = connectToMySQL(cls.DB).query_db(query,data)
+        if len(results) < 1: #login verification: if no email came back then the email does not exist.
+            return False
+        return cls(results[0])
     
     @staticmethod
     def validate_user(user):

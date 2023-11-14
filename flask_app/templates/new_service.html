@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>New Lawn Services</title>
+</head>
+<body>
+    <div id="wrapper">
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <p class="red_text">{{message}}</p>
+        {% endfor %}
+        {% endwith %}
+
+        <div id="nav">
+            <h1>Hello {{user.first_name}}!</h1>
+            <a href="/logout">Logout</a>
+        </div>
+
+        <div>
+            <p>Select Service Plan!</p>
+        </div>
+
+        <div class="content-label">
+            <form action="/create/service" method="POST">
+                <input type="checkbox" name="service">
+                <label for="mowing">Mowing</label><br>
+                {#<input type="checkbox" name="service">
+                <label for="Aeration & seeding">Aeration & seeding</label><br>
+                <input type="checkbox" name="service">
+                <label for="Prunning Trees & Shrubs">Prunning Trees & Shrubs</label><br>
+                <input type="checkbox" name="service">
+                <label for="Fertilizer & Weed Control">Fertilizer & Weed Control</label><br>#}
+                
+                <label for="date">date:</label><br>
+                <input type="date" name="date">
+                
+                <div>
+                    <p><strong>Notes</strong></p>
+                    <input type="textarea" name="notes" rows="10" cols="50">
+                </div>
+                
+                <input type="hidden" name="user_id" value="{{user.id}}">
+                <div>
+                    <a href="/dashboard"><button type="button">Cancel</button></a>
+                    <input type="submit" name="submit" value="Submit">
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

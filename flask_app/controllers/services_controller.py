@@ -40,7 +40,7 @@ def edit_service(id):
     }
     user = User.get_by_id(data)
     data = {
-        "idservice
+        "id":id
     }
     service = Service.get_by_id(data)
     return render_template("edit_service.html", service = service, user = user)
