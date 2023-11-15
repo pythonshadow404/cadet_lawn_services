@@ -27,8 +27,11 @@
                 <tbody>
                     {% for service in user.services %}
                     <tr>
-                        <td><a href="/services/{{service.id}}">{{service.destination}}</a></td>
-                        <td>{{service.service}}</td>
+                        <td><a href="/services/{{service.id}}">{{service.mowing}}</a></td>
+                        <td>{{service.mowing}}</td>
+                        <td>{{service.aeration}}</td>
+                        <td>{{service.prunning}}</td>
+                        <td>{{service.fertilizer}}</td>
                         <td>{{service.date}}</td>
                         <td>{{service.notes}}</td>
                         <td>

@@ -40,7 +40,10 @@ class User:
         for row in results:
             service_data = {
                 "id":row["service_id"],
-                "service":row["service"],
+                "mowing":row['mowing'],
+                "aeration":row['aeration'],
+                "prunning":row['prunning'],
+                "fertilizer":row['fertilizer'],
                 "date":row["date"],
                 "notes":row["notes"],
                 "created_at":row["services.created_at"],

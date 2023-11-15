@@ -48,8 +48,27 @@ def edit_service(id):
 @app.route("/create/service", methods=["POST"])
 def create_service():
     is_valid = Service.validate_service(request.form)
+    print(request.form)
+    data = {
+        'mowing':None,
+        'aeration':None,
+        'prunning':None,
+        'fertilizer':None,
+        'date':request.form['date'],
+        'notes':request.form['notes'],
+        'user_id':request.form['user_id'],
+    }
+    if request.form.get('mowing'):
+        data['mowing'] = request.form['mowing']
+    if request.form.get('fertilizer'):
+        data['fertilizer'] = request.form['fertilizer']
+    if request.form.get('prunning'):
+        data['prunning'] = request.form['prunning']
+    if request.form.get('aeration'):
+        data['aeration'] = request.form['aeration']
+
     if is_valid:
-        Service.save(request.form)
+        Service.save(data)
         return redirect("/dashboard")
     return redirect('/services/new')
 

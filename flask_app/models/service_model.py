@@ -5,7 +5,10 @@ class Service:
     DB = 'lawn_schema'
     def __init__(self, data):
         self.service_id = data['id']
-        self.service = data['service']
+        self.mowing = data['mowing']
+        self.aeration = data['aeration']
+        self.prunning = data['prunning']
+        self.fertilizer = data['fertilizer']
         self.date = data['date']
         self.notes = data['notes']
         self.created_at = data['created_at']
@@ -15,8 +18,8 @@ class Service:
     
     @classmethod
     def save(cls, data):
-        query = """INSERT INTO services (service, date, notes, user_id)
-                    VALUES (%(service)s, %(date)s, %(notes)s, %(user_id)s)"""
+        query = """INSERT INTO services (mowing, aeration, prunning, fertilizer, date, notes, user_id)
+                    VALUES (%(mowing)s, %(aeration)s, %(prunning)s, %(fertilizer)s, %(date)s, %(notes)s, %(user_id)s)"""
         return connectToMySQL(cls.DB).query_db(query, data)
     
     @classmethod
@@ -49,9 +52,9 @@ class Service:
     def validate_service(service_dict):
         is_valid = True
 
-        if len (service_dict['service']) == 0:
-            flash('Please choose a service!')
-            is_valid = False
+        # if len (service_dict['service']) == 0:
+        #     flash('Please choose a service!')
+        #     is_valid = False
         if len(service_dict['date']) == 0:
             flash('Date must be in xx/xx/xxx format', 'rsvp')
             is_valid = False
