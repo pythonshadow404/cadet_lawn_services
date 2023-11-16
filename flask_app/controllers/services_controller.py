@@ -20,29 +20,32 @@ def view_service(id):
     }
     user = User.get_by_id(data)
     data = {
-        "id":id
+        "service_id":id
     }
     service = Service.get_by_id(data)
+    print(service)
     return render_template("view_service.html", service=service, user=user)
 
 @app.route("/delete/service/<int:id>")
 def remove_service(id):
     data = {
-        "id":id
+        "service_id":id
     }
     Service.delete_one(data)
+    print("=================",data)
     return redirect("/dashboard")
 
-@app.route("/services/edit/<int:id>")
+@app.route("/services/edit/<int:service_id>")
 def edit_service(id):
     data = {
         "id":session["user_id"]
     }
     user = User.get_by_id(data)
     data = {
-        "id":id
+        "service_id":id
     }
     service = Service.get_by_id(data)
+    print("#############We are in the edit route##################")
     return render_template("edit_service.html", service = service, user = user)
 
 @app.route("/create/service", methods=["POST"])

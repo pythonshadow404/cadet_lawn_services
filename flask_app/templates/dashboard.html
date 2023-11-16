@@ -18,7 +18,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Service</th>
+                        <th>Mowing</th>
+                        <th>Aeration</th>
+                        <th>Prunning</th>
+                        <th>Fertilizer</th>
                         <th>Date</th>
                         <th>Notes</th>
                         <th>Actions</th>
@@ -28,7 +31,7 @@
                     {% for service in user.services %}
                     <tr>
                         <td><a href="/services/{{service.id}}">{{service.mowing}}</a></td>
-                        <td>{{service.mowing}}</td>
+                        print(service.mowing)
                         <td>{{service.aeration}}</td>
                         <td>{{service.prunning}}</td>
                         <td>{{service.fertilizer}}</td>

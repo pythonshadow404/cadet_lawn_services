@@ -13,16 +13,15 @@
             <a href="/dashboard">Dashboard</a>
             <a href="/logout">Logout</a>
         </div>
-        <div class="content-label">
-                {{service.mowing}}
-                {{service.aeration}}
-                {{service.prunning}}
-                {{service.fertilizer}}
-                date:{{service.date}}
-                
-                <div>
-                    <p><strong>Notes: {{service.notes}}</strong></p>
-                </div>
+        <div class="content-view">
+            <p>{{service.mowing}}</p>
+            <ul>
+                <li>Service: {{service.mowing}}</li>
+                <li>Date: {{service.date}}</li>
+                <li>Notes: {{service.notes}}</li>
+                <li>Created by: {{user.first_name}}</li>
+            </ul> 
+        </div>
     </div>
     
 </body>

@@ -39,7 +39,7 @@ class User:
         user = cls(results[0])
         for row in results:
             service_data = {
-                "id":row["service_id"],
+                "id":row["id"],
                 "mowing":row['mowing'],
                 "aeration":row['aeration'],
                 "prunning":row['prunning'],

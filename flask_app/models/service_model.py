@@ -4,7 +4,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 class Service:
     DB = 'lawn_schema'
     def __init__(self, data):
-        self.service_id = data['id']
+        self.id = data['id']
         self.mowing = data['mowing']
         self.aeration = data['aeration']
         self.prunning = data['prunning']
@@ -20,6 +20,7 @@ class Service:
     def save(cls, data):
         query = """INSERT INTO services (mowing, aeration, prunning, fertilizer, date, notes, user_id)
                     VALUES (%(mowing)s, %(aeration)s, %(prunning)s, %(fertilizer)s, %(date)s, %(notes)s, %(user_id)s)"""
+        print(query)
         return connectToMySQL(cls.DB).query_db(query, data)
     
     @classmethod
@@ -33,20 +34,21 @@ class Service:
 
     @classmethod
     def get_by_id(cls, data): 
-        query = """SELECT * FROM services WHERE service_id = %(service_id)s;"""
+        query = """SELECT * FROM services WHERE service_id = %(id)s;"""
         results = connectToMySQL(cls.DB).query_db(query, data)
+        print(results)
         return cls(results[0])
     
     @classmethod 
-    def update(cls, data):
+    def update_one(cls, data):
         query = """UPDATE services SET service = %(service)s, date = %(date)s, notes = %(notes)s,
-                    WHERE service_id = %(service_id)s;"""
-        return connectToMySQL('DB').query_db(query, data)
+                    WHERE service_id = %(id)s;"""
+        return connectToMySQL(cls.DB).query_db(query, data)
     
     @classmethod
     def delete_one(cls, data):
-        query = """DELETE FROM services WHERE service_id = %(service_id)s;"""
-        return connectToMySQL('DB').query_db(query, data)
+        query = """DELETE FROM services WHERE service_id = %(id)s;"""
+        return connectToMySQL(cls.DB).query_db(query, data)
     
     @staticmethod
     def validate_service(service_dict):

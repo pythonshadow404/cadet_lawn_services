@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Edit Trip</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="nav">
+            <h1>Hello {{user.first_name}}! Let's edit your services!</h1>
+            <a href="/logout">Logout</a>
+        </div>
+        <div>
+        {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+        <p class="red_text">{{message}}</p>
+        {% endfor %}
+        {% endwith %}
+        </div>
+        <div class="content-label">
+            <form action="/edit/trip" method = "POST">
+                <label for="destination">Destination: </label>
+                <input type="text" name="destination" value="{{trip.destination}}">
+                <label for="start_date">Start Date: </label>
+                <input type="date" name="start_date" value="{{trip.start_date}}">
+                <label for="end_date">End Date: </label>
+                <input type="date" name="end_date" value="{{trip.end_date}}">
+                <label for="plan">Plan: </label>
+                <input type="textarea" name="plan" value="{{trip.plan}}" rows="10" cols="50">
+                <input type="hidden" name="id" value="{{trip.id}}">
+                <input type="hidden" name="user_id" value="{{user.id}}">
+                <a href="/dashboard"><button type="button">Cancel</button></a>
+                <input type="submit" name="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
