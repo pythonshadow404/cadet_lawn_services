@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cadet Lawn App</title>
+    <link rel="stylesheet" href="static/up.css">
+</head>
+<body>
+    <div class="username">
+        <h1>Hello {{user.first_name}}!</h1>
+        <div class="links">
+            <a class="lg" href="/logout"><h3>Logout</h3></a>
+            <a class='af' href="/create_service"><h3>Select Service Plan!</h3></a>
+        </div>
+    </div>
+    <div class="plate">
+        <div class="container">
+            <div class="fav_shows">
+                <h1>Your services:</h1>
+            </div>
+            <table border="0">
+                <div class="head">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                </div>
+                <tbody class="body">
+                {% if uservice|length == 0: %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% else: %}
+                    {% for one_service in uservice: %}
+                        {% if one_service.mowing != "NULL" %}
+                            <tr>
+                                <td><a href=/services/{{one_service.service_id}}>{{one_service.mowing}}</a></td>
+                                <td class="r">{{one_service.date}}</td>
+                                <td>
+                                    <a href="/services/update/{{one_service.service_id}}">Edit |</a>
+                                    <a href="/services/delete/{{one_service.service_id}}"> Remove</a>
+                                </td>
+                            </tr>
+                        {% endif%}
+                        {%if one_service.aeration != "NULL" %}
+                        <tr>
+                            <td><a href=/services/{{one_service.service_id}}>{{one_service.aeration}}</a></td>
+                            <td class="r">{{one_service.date}}</td>
+                            <td>
+                                <a href="/services/update/{{one_service.service_id}}">Edit |</a>
+                                <a href="/services/delete/{{one_service.service_id}}"> Remove</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {%if one_service.prunning != "NULL" %}
+                        <tr>
+                            <td><a href=/services/{{one_service.service_id}}>{{one_service.prunning}}</a></td>
+                            <td class="r">{{one_service.date}}</td>
+                            <td>
+                                <a href="/services/update/{{one_service.service_id}}">Edit |</a>
+                                <a href="/services/delete/{{one_service.service_id}}"> Remove</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {%if one_service.fertilize != "NULL" %}
+                        <tr>
+                            <td><a href=/services/{{one_service.service_id}}>{{one_service.fertilize}}</a></td>
+                            <td class="r">{{one_service.date}}</td>
+                            <td>
+                                <a href="/services/update/{{one_service.service_id}}">Edit |</a>
+                                <a href="/services/delete/{{one_service.service_id}}"> Remove</a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

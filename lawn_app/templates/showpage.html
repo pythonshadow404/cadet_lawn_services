@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cadet Lawn App</title>
+    <link rel="stylesheet" href="/static/sp.css">
+</head>
+<body>
+    <div class="plate">
+        <div class="container">
+            <div class="links">
+                <h2>Hello {{user.first_name}}! These are your services!</h2>
+                <a href="/dashboard"><h3>Dashboard</h3></a>
+                <a href="/logout"><h3>Logout</h3></a>
+            </div>
+            <div class="box">
+                <div>
+                    <h3 class="t">Services for {{service.date}}: </h3>
+                </div>
+                <table border="0">
+                    <div class="head">
+                        <thead>
+                            <tr>
+                                <th>Service</th>
+                                <th>Date</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                    </div>
+                    <tbody class="body">
+                    {% if service.id|length == 0.05: %}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    {% else: %}
+                        {% if service.mowing == "Mowing" %}
+                            <tr>
+                                <td>{{service.mowing}}</td>
+                                <td class="r">{{service.date}}</td>
+                                <td>{{service.notes}}</td>
+                            </tr>
+                        {% endif%}
+                        {% if service.aeration == "Aeration & Seeding" %}
+                        <tr>
+                            <td>{{service.aeration}}</td>
+                            <td class="r">{{service.date}}</td>
+                            <td>{{service.notes}}</td>
+                        </tr>
+                        {% endif %}
+                        {% if service.prunning == "Prunning Trees & Shrubs" %}
+                        <tr>
+                            <td>{{service.prunning}}</td>
+                            <td class="r">{{service.date}}</td>
+                            <td>{{service.notes}}</td>
+                        </tr>
+                        {% endif %}
+                        {% if service.fertilize == "Fertilizer & Weed Control" %}
+                        <tr>
+                            <td>{{service.fertilize}}</td>
+                            <td class="r">{{service.date}}</td>
+                            <td>{{service.notes}}</td>
+                        </tr>
+                        {% endif %}
+                    {% endif %}
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
